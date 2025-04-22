@@ -1,0 +1,130 @@
+# Cursor Rules
+
+## Instructions
+
+- Record fixes for mistakes or corrections to avoid repetition in the `Lessons` section.
+- Organize thoughts and plan steps before starting a task in the `Scratchpad` section.
+- Clear old tasks if necessary.
+- Use todo markers for progress tracking:
+  - `[X]` Completed tasks
+  - `[ ]` Pending tasks
+- Update Scratchpad after completing subtasks.
+- Reflect and plan after milestones for better task management.
+- Always refer to Scratchpad before planning the next step.
+
+## Lessons
+
+## Scratchpad
+
+### [ ] 1. Project Initialization
+
+- [x] Create Next.js 15 project with TypeScript
+- [x] Set up project structure (app directory)
+- [x] Configure ESLint and Prettier
+- [ ] Set up Git repository
+
+### [ ] 2. Dependencies Installation
+
+- [ ] Install and configure Shadcn UI
+- [ ] Set up Lucide icons
+- [ ] Install utility packages (clsx, tailwind-merge)
+- [ ] Configure Zod for schema validation
+- [ ] Set up Zustand for state management
+
+### [ ] 3. Database and Authentication Setup
+
+- [ ] Set up PostgreSQL database
+- [ ] Configure Prisma ORM
+- [ ] Initialize Prisma
+- [ ] Create initial schema
+- [ ] Set up database migrations
+- [ ] Implement NextAuth.js (beta) authentication
+- [ ] Configure OAuth providers
+- [ ] Set up user model
+- [ ] Create authentication API routes
+
+### [ ] 4. Admin Dashboard Implementation
+
+- [ ] Create admin layout
+- [ ] Implement admin authentication/authorization
+- [ ] Build dashboard overview with Recharts
+- [ ] Create product management CRUD
+- [ ] Implement order management system
+- [ ] Add user management features
+
+### [ ] 5. Product Management System
+
+- [ ] Design product schema
+- [ ] Implement product CRUD operations
+- [ ] Set up UploadThing for product images
+- [ ] Create product categories and tags
+- [ ] Implement product search and filtering
+
+### [ ] 6. Shopping Experience
+
+- [ ] Create product listing page
+- [ ] Implement product details page
+- [ ] Build shopping cart using Zustand
+- [ ] Add wishlist functionality
+- [ ] Implement product search and filters
+- [ ] Create product reviews system
+
+### [ ] 7. Stripe Integration
+
+- [ ] Set up Stripe account and API keys
+- [ ] Implement payment processing
+- [ ] Create checkout flow
+- [ ] Handle webhook events
+- [ ] Implement order confirmation
+
+### [ ] 8. Order Management
+
+- [ ] Design order schema
+- [ ] Create order processing system
+- [ ] Implement order tracking
+- [ ] Set up email notifications with Resend
+- [ ] Create order history for users
+
+### [ ] 9. User Features
+
+- [ ] Create user profile page
+- [ ] Implement address management
+- [ ] Add order history view
+- [ ] Create account settings
+- [ ] Implement wishlist management
+
+### [ ] 10. Testing and Optimization
+
+- [ ] Set up testing environment
+- [ ] Write unit tests
+- [ ] Create integration tests
+- [ ] Implement E2E testing
+
+### [ ] 11. Performance Optimization
+
+- [ ] Implement image optimization
+- [ ] Add caching strategies
+- [ ] Optimize API routes
+- [ ] Implement lazy loading
+- [ ] Add error boundaries
+
+### [ ] 12. Deployment Setup
+
+- [ ] Configure production environment
+- [ ] Set up CI/CD pipeline
+- [ ] Configure monitoring and logging
+- [ ] Implement backup strategy
+
+### [ ] 13. Documentation
+
+- [ ] Create API documentation
+- [ ] Write setup instructions
+- [ ] Document deployment process
+- [ ] Create user manual
+
+### [ ] 14. Monitoring and Maintenance
+
+- [ ] Set up error tracking
+- [ ] Implement analytics
+- [ ] Create backup procedures
+- [ ] Plan for updates and maintenance
