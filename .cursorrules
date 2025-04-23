@@ -21,20 +21,25 @@
 - [x] Create Next.js 15 project with TypeScript
 - [x] Set up project structure (app directory)
 - [x] Configure ESLint and Prettier
-- [ ] Set up Git repository
+- [x] Set up Git repository
 
 ### [ ] 2. Dependencies Installation
 
-- [ ] Install and configure Shadcn UI
-- [ ] Set up Lucide icons
-- [ ] Install utility packages (clsx, tailwind-merge)
-- [ ] Configure Zod for schema validation
-- [ ] Set up Zustand for state management
+- [x] Install and configure Shadcn UI
+- [x] Set up Lucide icons
+- [x] Install utility packages (clsx, tailwind-merge)
+- [x] Install and configure Lucide icons
+- [x] Configure Zod for schema validation
+- [x] Set up Zustand for state management
+- [ ] Recharts for analytics
+- [ ] Resend for emails
+- [ ] Uploadthing for file uploads
+- [ ] Configure Prisma ORM and its client
 
 ### [ ] 3. Database and Authentication Setup
 
 - [ ] Set up PostgreSQL database
-- [ ] Configure Prisma ORM
+
 - [ ] Initialize Prisma
 - [ ] Create initial schema
 - [ ] Set up database migrations
