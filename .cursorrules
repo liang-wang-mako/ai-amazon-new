@@ -44,6 +44,7 @@
 - [ ] Fix Module '"next-auth/next"' has no exported member 'getServerSession'
 - [ ] Fix Error: Command "npm run build" exited with 1
 - [ ] Fix module build failed: UnhandledSchemeError: Reading from "node:module" is not handled by plugins (Unhandled scheme).
+- [ ] Module build failed: UnhandledSchemeError: Reading from "node:child_process" is not handled by plugins (Unhandled scheme).
 
 ### [ ] 3. Database and Authentication Setup
 
