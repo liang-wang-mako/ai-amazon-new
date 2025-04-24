@@ -10,6 +10,10 @@ const nextConfig = {
         fs: false,
         path: false,
         os: false,
+        child_process: false,
+        net: false,
+        tls: false,
+        crypto: false,
       };
     }
     return config;
