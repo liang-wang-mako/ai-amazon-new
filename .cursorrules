@@ -36,6 +36,8 @@
 - [ ] Uploadthing for file uploads
 - [ ] Configure Prisma ORM and its client
 - [ ] Implement NextAuth.js (beta) authentication
+- [ ] Fix import error: 'getServerSession' is not exported from 'next-auth' (imported as 'getServerSession').
+- [ ] Fix import error: 'createNextRouteHandler' is not exported from 'uploadthing/next' (imported as 'createNextRouteHandler').
 
 ### [ ] 3. Database and Authentication Setup
 
