@@ -1,5 +1,6 @@
 import { createUploadthing, type FileRouter } from 'uploadthing/server';
 import { auth } from '@/auth';
+import { type User } from 'next-auth';
 
 const f = createUploadthing();
 
@@ -10,11 +11,9 @@ export const ourFileRouter = {
     .middleware(async () => {
       const session = await auth();
 
-      if (!session) throw new Error('Unauthorized');
-      if (!session?.user) throw new Error('Unauthorized');
+      if (!session || !session.user) throw new Error('Unauthorized');
 
-      // Return metadata to be stored with the file
-      return { userId: session.user.id };
+      return { userId: session.user.id as string };
     })
     .onUploadComplete(async ({ metadata, file }) => {
       console.log('Upload complete for userId:', metadata.userId);
@@ -24,11 +23,8 @@ export const ourFileRouter = {
   avatar: f({ image: { maxFileSize: '1MB', maxFileCount: 1 } })
     .middleware(async () => {
       const session = await auth();
-      if (!session) throw new Error('Unauthorized');
-      if (!session?.user) throw new Error('Unauthorized');
-
-      // Return metadata to be stored with the file
-      return { userId: session.user.id };
+      if (!session || !session.user) throw new Error('Unauthorized');
+      return { userId: session.user.id as string };
     })
     .onUploadComplete(async ({ metadata, file }) => {
       console.log('Avatar upload complete for userId:', metadata.userId);
@@ -38,9 +34,8 @@ export const ourFileRouter = {
   productDocument: f({ pdf: { maxFileSize: '8MB', maxFileCount: 1 } })
     .middleware(async () => {
       const session = await auth();
-      if (!session) throw new Error('Unauthorized');
-      if (!session?.user) throw new Error('Unauthorized');
-      return { userId: session.user.id };
+      if (!session || !session.user) throw new Error('Unauthorized');
+      return { userId: session.user.id as string };
     })
     .onUploadComplete(async ({ metadata, file }) => {
       console.log('Document upload complete for userId:', metadata.userId);

@@ -42,6 +42,7 @@
 - [ ] Fix Cannot find module '@uploadthing/react/hooks' or its corresponding type declarations.
 - [ ] Fix import error: 'getServerSession' is not exported from 'next-auth' (imported as 'getServerSession').
 - [ ] Fix Module '"next-auth/next"' has no exported member 'getServerSession'
+- [ ] Fix Error: Command "npm run build" exited with 1
 
 ### [ ] 3. Database and Authentication Setup
 
