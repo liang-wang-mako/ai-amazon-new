@@ -40,6 +40,8 @@
 - [ ] Fix import error: 'createNextRouteHandler' is not exported from 'uploadthing/next' (imported as 'createNextRouteHandler').
 - [ ] Fix Module "@uploadthing/react" has no exported member 'generateComponents'
 - [ ] Fix Cannot find module '@uploadthing/react/hooks' or its corresponding type declarations.
+- [ ] Fix import error: 'getServerSession' is not exported from 'next-auth' (imported as 'getServerSession').
+- [ ] Fix Module '"next-auth/next"' has no exported member 'getServerSession'
 
 ### [ ] 3. Database and Authentication Setup
 
