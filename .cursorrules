@@ -35,6 +35,7 @@
 - [ ] Resend for emails
 - [ ] Uploadthing for file uploads
 - [ ] Configure Prisma ORM and its client
+- [ ] Implement NextAuth.js (beta) authentication
 
 ### [ ] 3. Database and Authentication Setup
 
@@ -43,7 +44,7 @@
 - [ ] Initialize Prisma
 - [ ] Create initial schema
 - [ ] Set up database migrations
-- [ ] Implement NextAuth.js (beta) authentication
+
 - [ ] Configure OAuth providers
 - [ ] Set up user model
 - [ ] Create authentication API routes
