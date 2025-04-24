@@ -38,6 +38,8 @@
 - [ ] Implement NextAuth.js (beta) authentication
 - [ ] Fix import error: 'getServerSession' is not exported from 'next-auth' (imported as 'getServerSession').
 - [ ] Fix import error: 'createNextRouteHandler' is not exported from 'uploadthing/next' (imported as 'createNextRouteHandler').
+- [ ] Fix Module "@uploadthing/react" has no exported member 'generateComponents'
+- [ ] Fix Cannot find module '@uploadthing/react/hooks' or its corresponding type declarations.
 
 ### [ ] 3. Database and Authentication Setup
 
