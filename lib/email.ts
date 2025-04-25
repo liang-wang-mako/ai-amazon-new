@@ -1,3 +1,4 @@
+import React from 'react';
 import { Resend } from 'resend';
 import {
   EmailTemplate,
@@ -20,8 +21,9 @@ export async function sendEmail(template: EmailTemplate): Promise<EmailResponse>
       from: template.from,
       to: template.to,
       subject: template.subject,
-      html: template.html,
-      text: template.text,
+      react: template.html
+        ? React.createElement('div', { dangerouslySetInnerHTML: { __html: template.html } })
+        : undefined,
     });
 
     if (error) {
@@ -35,7 +37,7 @@ export async function sendEmail(template: EmailTemplate): Promise<EmailResponse>
     return {
       success: false,
       error: error instanceof Error ? error.message : 'Unknown error occurred',
-    };
+    } satisfies EmailResponse;
   }
 }
 
