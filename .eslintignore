@@ -1,0 +1,7 @@
+# Ignore all Prisma generated files
+lib/generated/**
+
+# You can add other generated or build output folders here as needed
+.next/
+dist/
+out/ 
