@@ -14,16 +14,18 @@ export async function validateFormData<T>(
     // Convert FormData to a plain object
     const data = Object.fromEntries(formData.entries());
 
-    // Parse dates if they exist in the data
+    const transformedData: Record<string, unknown> = {};
     Object.keys(data).forEach((key) => {
       const value = data[key];
       if (typeof value === 'string' && /^\d{4}-\d{2}-\d{2}/.test(value)) {
-        data[key] = new Date(value);
+        transformedData[key] = new Date(value);
+      } else {
+        transformedData[key] = value;
       }
     });
 
     // Validate the data against the schema
-    const validatedData = await schema.parseAsync(data);
+    const validatedData = await schema.parseAsync(transformedData);
 
     return {
       success: true,
