@@ -4,6 +4,15 @@ import Credentials from 'next-auth/providers/credentials';
 import Google from 'next-auth/providers/google';
 import GitHub from 'next-auth/providers/github';
 import { getUserByEmail } from '@/lib/auth';
+import { DefaultSession } from 'next-auth';
+
+declare module 'next-auth' {
+  interface Session {
+    user: {
+      role: 'USER' | 'ADMIN';
+    } & DefaultSession['user'];
+  }
+}
 
 export default {
   providers: [
@@ -16,18 +25,18 @@ export default {
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
     }),
     Credentials({
-      async authorize(credentials) {
+      async authorize(credentials: Partial<Record<string, unknown>>) {
         if (!credentials?.email || !credentials?.password) {
           return null;
         }
 
-        const user = await getUserByEmail(credentials.email);
+        const user = await getUserByEmail(credentials.email as string);
 
         if (!user || !user.password) {
           return null;
         }
 
-        const isValid = await bcrypt.compare(credentials.password, user.password);
+        const isValid = await bcrypt.compare(credentials.password as string, user.password);
 
         if (!isValid) {
           return null;

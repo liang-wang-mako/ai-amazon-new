@@ -7,14 +7,8 @@ export const {
   signIn,
   signOut,
 } = NextAuth({
-  adapter: await (async () => {
-    if (typeof window === 'undefined') {
-      const { PrismaAdapter } = await import('@auth/prisma-adapter');
-      const { prisma } = await import('@/lib/prisma');
-      return PrismaAdapter(prisma);
-    }
-    return undefined;
-  })(),
+  adapter:
+    process.env.NEXT_RUNTIME === 'edge' ? undefined : (await import('./auth.adapter')).adapter,
   session: { strategy: 'jwt' },
   ...authConfig,
 });
