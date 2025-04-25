@@ -1,50 +1,65 @@
-import NextAuth from 'next-auth';
-import authConfig from '@/auth.config';
+import { auth } from '@/auth';
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
 
-const { auth } = NextAuth(authConfig);
+// Add paths that don't require authentication
+const publicPaths = ['/', '/auth/login', '/auth/register'];
+
+// Add paths that require admin role
+const adminPaths = ['/admin', '/admin/products', '/admin/orders', '/admin/users'];
 
 export default auth((req) => {
-  const isLoggedIn = !!req.auth;
   const { nextUrl } = req;
+  const isAuth = !!req.auth;
+  const isAuthPage = nextUrl.pathname.startsWith('/auth');
+  const isAdminPage = adminPaths.some((path) => nextUrl.pathname.startsWith(path));
+  const isPublicPath = publicPaths.some((path) => nextUrl.pathname === path);
 
-  const isApiRoute = nextUrl.pathname.startsWith('/api');
-  const isAuthRoute = nextUrl.pathname.startsWith('/auth');
-  const isAdminRoute = nextUrl.pathname.startsWith('/admin');
-
-  // Allow API routes to handle their own auth
-  if (isApiRoute) {
-    return null;
-  }
-
-  // Redirect authenticated users away from auth pages
-  if (isAuthRoute) {
-    if (isLoggedIn) {
-      return Response.redirect(new URL('/', nextUrl));
+  // Handle auth pages (login, register, etc.)
+  if (isAuthPage) {
+    if (isAuth) {
+      return NextResponse.redirect(new URL('/', nextUrl));
     }
     return null;
   }
 
-  // Protect admin routes
-  if (isAdminRoute) {
-    if (!isLoggedIn) {
-      return Response.redirect(new URL('/auth/login', nextUrl));
-    }
-
-    const isAdmin = req.auth?.user?.role === 'ADMIN';
-    if (!isAdmin) {
-      return Response.redirect(new URL('/', nextUrl));
-    }
+  // Handle public paths
+  if (isPublicPath) {
+    return null;
   }
 
-  // Protect other routes that require authentication
-  if (!isLoggedIn && nextUrl.pathname !== '/') {
-    return Response.redirect(new URL('/auth/login', nextUrl));
+  // Handle admin paths
+  if (isAdminPage) {
+    if (!isAuth) {
+      return NextResponse.redirect(new URL('/auth/login', nextUrl));
+    }
+
+    const userRole = req.auth?.user?.role;
+    if (userRole !== 'ADMIN') {
+      return NextResponse.redirect(new URL('/', nextUrl));
+    }
+
+    return null;
+  }
+
+  // Handle protected paths
+  if (!isAuth) {
+    const redirectUrl = new URL('/auth/login', nextUrl);
+    redirectUrl.searchParams.set('callbackUrl', nextUrl.pathname);
+    return NextResponse.redirect(redirectUrl);
   }
 
   return null;
 });
-
-// Optionally, don't invoke Middleware on some paths
+// Configure middleware matcher
 export const config = {
-  matcher: ['/((?!.+\\.[\\w]+$|_next).*)', '/', '/(api|trpc)(.*)'],
+  matcher: [
+    /*
+     * Match all request paths except:
+     * - api routes
+     * - static files (/_next/, /images/, etc.)
+     * - favicon.ico
+     */
+    '/((?!api|_next/static|_next/image|images|favicon.ico).*)',
+  ],
 };
