@@ -1,6 +1,5 @@
 import { auth } from '@/auth';
 import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
 
 // Add paths that don't require authentication
 const publicPaths = ['/', '/auth/login', '/auth/register'];
@@ -15,42 +14,36 @@ export default auth((req) => {
   const isAdminPage = adminPaths.some((path) => nextUrl.pathname.startsWith(path));
   const isPublicPath = publicPaths.some((path) => nextUrl.pathname === path);
 
-  // Handle auth pages (login, register, etc.)
-  if (isAuthPage) {
-    if (isAuth) {
-      return NextResponse.redirect(new URL('/', nextUrl));
-    }
-    return null;
+  if (isAuthPage && isAuth) {
+    return Response.redirect(new URL('/', nextUrl));
   }
 
-  // Handle public paths
-  if (isPublicPath) {
-    return null;
+  if (isPublicPath || isAuthPage) {
+    return NextResponse.next();
   }
 
-  // Handle admin paths
   if (isAdminPage) {
     if (!isAuth) {
-      return NextResponse.redirect(new URL('/auth/login', nextUrl));
+      return Response.redirect(new URL('/auth/login', nextUrl));
     }
 
     const userRole = req.auth?.user?.role;
     if (userRole !== 'ADMIN') {
-      return NextResponse.redirect(new URL('/', nextUrl));
+      return Response.redirect(new URL('/', nextUrl));
     }
 
-    return null;
+    return NextResponse.next();
   }
 
-  // Handle protected paths
   if (!isAuth) {
     const redirectUrl = new URL('/auth/login', nextUrl);
     redirectUrl.searchParams.set('callbackUrl', nextUrl.pathname);
-    return NextResponse.redirect(redirectUrl);
+    return Response.redirect(redirectUrl);
   }
 
-  return null;
+  return NextResponse.next();
 });
+
 // Configure middleware matcher
 export const config = {
   matcher: [
