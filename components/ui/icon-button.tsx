@@ -5,15 +5,13 @@ import { cn } from '@/lib/utils';
 
 interface IconButtonProps extends ButtonProps {
   iconName: IconProps['name'];
-  iconSize?: IconProps['size'];
-  iconVariant?: IconProps['variant'];
+  iconSize?: 'sm' | 'md' | 'lg' | 'xl';
   iconClassName?: string;
 }
 
 export function IconButton({
   iconName,
   iconSize = 'md',
-  iconVariant = 'default',
   iconClassName,
   children,
   className,
@@ -21,12 +19,7 @@ export function IconButton({
 }: IconButtonProps) {
   return (
     <Button className={className} {...props}>
-      <Icon
-        name={iconName}
-        size={iconSize}
-        variant={iconVariant}
-        className={cn(children && 'mr-2', iconClassName)}
-      />
+      <Icon name={iconName} size={iconSize} className={cn(children && 'mr-2', iconClassName)} />
       {children}
     </Button>
   );
